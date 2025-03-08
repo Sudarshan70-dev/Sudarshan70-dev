@@ -1,0 +1,157 @@
+.hero{
+    width: 100%;
+    height: 75vh;
+    align-items:center;
+    display: grid;
+    grid-template-columns:60% 40%;
+}
+.intro-img{
+    width:100%;
+    height:100%;
+    margin:0px auto;
+    text-align:center;
+}
+.intro-img img{
+    width:40%;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.intro-heading{
+    text-align : center;
+    color:#ffff00;
+    font-size: 2rem;
+    padding-top:80px;
+    padding-left:40px;
+}
+
+.centerDiv{
+    display:flex;
+    justify-content:center;
+    align-items:center
+}
+
+.paperBackground{
+    background:rgb(170 170 170);
+}
+
+
+@media screen and (max-width:640px){
+    
+    .hero .intro-heading{
+        font-size: 1rem;
+    }
+
+    .hero .typing-container{
+        font-size:1rem;
+    }
+}
+
+.typing-container {
+    display: inline-block;
+    font-size: 5rem;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 3s steps(22, end) infinite alternate,
+               blink 0.7s infinite;
+  }
+  
+  @keyframes typing {
+    0% { width: 0; }
+    50% { width: 100%; }
+  }
+  
+  @keyframes blink {
+    50% { border-color: transparent; }
+  }
+  
+.heading{
+    background-color: blueviolet;
+    width: 150px;
+    height: 50px;
+    border-radius: 22px;
+    font-weight: 800;
+    text-align: center;
+    color: aliceblue;
+    font-size:larger;
+}
+
+.paddingLeftRight{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+@media (max-width:900px) {
+    .hero{
+        grid-template-columns:auto;
+    }
+}
+
+.workIcon{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: 4px solid rgb(255, 255, 255);
+}
+
+.companyName{
+    font-weight: 800;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.positionName{
+    /* font-size: large; */
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.jobDiscreption{
+    --tw-text-opacity: 1;
+    color: rgb(107 114 128 / var(--tw-text-opacity));
+    font-size: .875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+}
+
+.jobDiscreption ul li{
+    list-style-type: square;
+
+}
+
+.inputField{
+    width:100%;
+    height:40px;
+    align-items: center;
+    border-radius: 1.5rem;
+    position: relative;
+    display: flex;
+    border: 2px solid #ccc;
+    background-color:#ffffff;
+    white-space:normal;
+}
+
+.customInput{
+    border:none;
+    outline: none;
+    flex:1;
+    background: transparent;
+}
+
+.customInputMessage{
+    height:100px;
+    white-space: normal; /* Ensures text wraps */
+    word-break: break-word; /* Ensures long words wrap */
+    word-wrap: break-word;
+    overflow-y: auto;
+    font-family:inherit;
+}
+
+.inputFieldMessage{
+    height:100px;
+    resize:none;
+}
+
