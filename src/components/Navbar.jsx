@@ -15,11 +15,26 @@ const Navbar = () => {
 
   const handleClick = () => setClick(!click);
 
+  const goOnAbout = ()=>{
+    const element = document.getElementById("about");
+      window.scrollTo({top:element.offsetTop , behavior:"smooth"});
+  }
+  
+  const goOnExperience = ()=>{
+    const element = document.getElementById("work");
+    window.scrollTo({top:element.offsetTop , behavior:"smooth"});
+  }
+
+  const goOnContact=()=>{
+    const element = document.getElementById("contact");
+    window.scrollTo({top:element.offsetTop , behavior:"smooth"});
+  }
+
+
   return (
     <div className="header">
       <Link to="/">
         <img className="logo" src={Logo} alt="Logo" />
-        {/* <h1 className="headerColor">Sudarshan Gadekar</h1> */}
       </Link>
 
       <ul className={click ? "nav-menu active" : "nav-menu"}>

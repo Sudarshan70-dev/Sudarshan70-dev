@@ -1,11 +1,9 @@
 import React from "react";
 import "./HeroImgStyle.css";
 import IntroImg from "../assets/Avatar.webp";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailIcon from "@mui/icons-material/Mail";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import GitHubIcon from "@mui/icons-material/GitHub";
+import SendIcon from '@mui/icons-material/Send';
 import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
@@ -14,6 +12,15 @@ import { Container } from "@mui/system";
 
 
 const HeroImg = () => {
+
+
+  const goOnContact=()=>{
+    const element = document.getElementById("contact");
+    window.scrollTo({top:element.offsetTop , behavior:"smooth"});
+  }
+
+
+
   return (
     <div className="centerDiv">
       <Container
@@ -35,12 +42,14 @@ const HeroImg = () => {
             </div>
           </div>
 
+          <button type="button" className="button centerDiv" onClick={goOnContact}>Contact Me</button>
+
           <div className="centerDiv">
             <div>
               <div className="heading centerDiv" id="about">
                 About me
               </div>
-              <p>
+              <p className="justifyContent">
                 I am a passionate full-stack web developer based in Pune,
                 Maharashtra with expertise in UI/UX, JavaScript, and Node.js.
                 With 2 years of experience, I specialize in building dynamic and
@@ -51,7 +60,7 @@ const HeroImg = () => {
                 ensure the quality of my work, I use various testing frameworks
                 like Mocha, Appium, and Selenium.
               </p>
-              <p>
+              <p className="justifyContent">
                 I am holding a B.Tech in Computer Science & Engineering from
                 Hi-Tech Institute of Technology, Chatrapati Sambhaji Nagar
                 (Aurangabad, Maharashtra), Now, as a full-stack developer, I
@@ -62,7 +71,7 @@ const HeroImg = () => {
                 continuously explore new technologies to stay ahead in the
                 ever-evolving web landscape.
               </p>
-              <p>
+              <p className="justifyContent">
                 If you're looking for a full-stack developer who is passionate
                 about building impactful projects for the web and mobile, please
                 don't hesitate to get in touch. Let's work together to bring
@@ -93,7 +102,7 @@ const HeroImg = () => {
                 <div className="jobDiscreption">
                   <ul>
                     <li>
-                      <p>
+                      <p className="justifyContent">
                         As the organization's vending machine management
                         platform provides a comprehensive solution, many
                         companies in the vending industry seek to integrate with
@@ -105,7 +114,7 @@ const HeroImg = () => {
                       </p>
                     </li>
                     <li>
-                      <p>
+                      <p className="justifyContent">
                         I develop and maintain the vending machine planogram,
                         where all administrative operations for vending
                         operators are performed, including product stocking,
@@ -114,14 +123,14 @@ const HeroImg = () => {
                       </p>
                     </li>
                     <li>
-                      <p>
+                      <p className="justifyContent">
                         In addition to development, I actively identify and
                         resolve bugs in both the web and Android applications,
                         working across both frontend and backend systems.
                       </p>
                     </li>
                     <li>
-                      <p>
+                      <p className="justifyContent">
                         Beyond my development work, I am also responsible for
                         automation testing, utilizing Selenium for frontend
                         testing and Mocha for backend testing to ensure the
@@ -129,7 +138,7 @@ const HeroImg = () => {
                       </p>
                     </li>
                     <li>
-                      <p>
+                      <p className="justifyContent">
                         Skill : ReactJs, JavaScript ES6, Typescript, Firebase,
                         Firestore, Google Cloud Platform, Selenium, Mocha, Git
                       </p>
@@ -144,62 +153,65 @@ const HeroImg = () => {
             <div className="heading centerDiv">Get in touch</div>
 
             <Container
-                sx={{
-                  width: "90%",
-                }}
-              >
-            <div>
-              <div className="inputField">
-              <EmailOutlinedIcon />
-                <input type="email" name="Email" id="emailId" placeholder="Email" className="customInput"  />
-
-              </div>
-              <div className="inputField">
-              <PersonOutlineIcon />
-                <input type="text" name="Name" id="name" placeholder="Name" className="customInput"/>
-              </div>
-              <div className="inputField inputFieldMessage" contentEditable="true">
-                <ChatBubbleOutlineIcon/>
-                <textarea name="message" id="message" placeholder="Write message" className="customInput customInputMessage"></textarea>
-              </div>
+              sx={{
+                width: "80%",
+              }}
+            >
               <div>
-                <button type="submit">Send</button>
-              </div>
-              <div >
-                <a href="mailto:sudarshangadekar222@gmail.com">
-                  <MailIcon /> sudarshangadekar222@gmail.com
-                </a>
-              </div>
-              <div>
-                <a href="tel:+917083589566">
-                  <LocalPhoneIcon />
-                  +91 7083589566
-                </a>
-              </div>
-              <div >
-                <a
-                  href="https://www.linkedin.com/in/sudarshan-gadekar-21715b256/"
-                  target="_blank"
+                <div className="inputField">
+                  <EmailOutlinedIcon />
+                  <input
+                    type="email"
+                    name="Email"
+                    id="emailId"
+                    placeholder="Email"
+                    className="customInput"
+                  />
+                </div>
+                <div className="inputField">
+                  <PersonOutlineIcon />
+                  <input
+                    type="text"
+                    name="Name"
+                    id="name"
+                    placeholder="Name"
+                    className="customInput"
+                  />
+                </div>
+                <div
+                  className="inputField inputFieldMessage"
                 >
-                  <LinkedInIcon />
-                </a>
-              </div>
-              <div >
-                <a
-                  href="https://www.instagram.com/er.sudarshan.gadekar.904?igsh=ejRxcm1vM2wzcHd4"
-                  target="_blank"
-                >
-                  <InstagramIcon />
-                </a>
-              </div>
-              <div>
-                <a href="https://www.github.com/Sudarshan70-dev" target = "_blank">
-                <GitHubIcon />
-                </a>
-              </div>
-            </div>
-              </Container>
+                  <ChatBubbleOutlineIcon />
+                  <textarea
+                    name="message"
+                    id="message"
+                    placeholder="Write message"
+                    className="customInput customInputMessage"
+                  ></textarea>
+                </div>
+                <div>
+                 
+                  <button type="submit" className="button centerDiv">
+                    Send
+                    <SendIcon sx={{paddingLeft:"10px", color:"inherit",}}/>
+                    </button>
+                </div>
 
+                <div className="contactInfo centerDiv">
+                  <div>
+                    <a href="mailto:sudarshangadekar222@gmail.com">
+                      <MailIcon /> sudarshangadekar222@gmail.com
+                    </a>
+                  </div>
+                  <div>
+                    <a href="tel:+917083589566">
+                      <LocalPhoneIcon />
+                      +91 7083589566
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </Container>
           </div>
         </div>
       </Container>

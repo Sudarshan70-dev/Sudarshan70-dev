@@ -75,6 +75,7 @@
     text-align: center;
     color: aliceblue;
     font-size:larger;
+    margin: 1rem 0;
 }
 
 .paddingLeftRight{
@@ -103,10 +104,8 @@
 }
 
 .positionName{
-    /* font-size: large; */
     font-weight: 500;
     font-family: 'Times New Roman', Times, serif;
-
 }
 
 .jobDiscreption{
@@ -132,13 +131,22 @@
     border: 2px solid #ccc;
     background-color:#ffffff;
     white-space:normal;
+    margin-top: 1rem;
+    padding-left: 10px;
+    
 }
+
+.inputField:focus-within{
+    border: 2px solid blueviolet;
+}
+
 
 .customInput{
     border:none;
     outline: none;
     flex:1;
     background: transparent;
+    padding-left: 5px;
 }
 
 .customInputMessage{
@@ -148,10 +156,67 @@
     word-wrap: break-word;
     overflow-y: auto;
     font-family:inherit;
+    resize: none;
+    border: none;
 }
 
 .inputFieldMessage{
-    height:100px;
+    height:110px;
     resize:none;
+    border: 2px solid #ccc;
+    align-items: normal !important;
+    padding-top: 5px;
 }
 
+
+.justifyContent{
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.contactInfo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+@media (max-width:900px){
+    .contactInfo{
+        flex-direction: column;
+    }
+}
+.otherProfiles{
+    align-items: center;
+    position: fixed;
+    z-index: 15;
+    top: 50%;
+    height: 100vh;
+    right: 0;
+    padding-right: 10px;
+}
+
+.contactIcons{
+    background-color: #ffffff;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 10px 0;
+}
+
+.button{
+    height: 40px;
+    width: 130pxpx;
+    border-radius: 1.5rem;
+    border: 2px solid rgb(88, 14, 246);
+    font-size: medium;
+    font-weight: 600;
+    padding: 10px;
+    margin: 1rem 0;
+}
+
+.button:hover{
+    background-color: rgb(88, 14, 246);
+    color: #ffffff;
+}
