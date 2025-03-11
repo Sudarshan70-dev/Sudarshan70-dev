@@ -1,5 +1,5 @@
-import React from "react";
-import "./HeroImgStyle.css";
+import React, { useState } from "react";
+import "../style/HeroImgStyle.css";
 import IntroImg from "../assets/Avatar.webp";
 import MailIcon from "@mui/icons-material/Mail";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
@@ -8,17 +8,125 @@ import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import CheckIcon from '@mui/icons-material/Check';
+import DownloadIcon from '@mui/icons-material/Download';
 import { Container } from "@mui/system";
+import emailjs from "@emailjs/browser";
 
+import resume from "../assets/Resume.pdf";
 
 const HeroImg = () => {
 
+ const [email, setEmail]= useState("");
+ const [name, setName]= useState("");
+ const [message, setMessage]= useState("");
+ const [isSent, setIsSent] = useState(false);
+ const [isSending, setIsSending]=useState(false);
+ const [emailErr, setEmailErr] = useState(false);
+ const [nameErr, setNameErr] = useState(false);
+ const [messageErr, setMessageErr] = useState(false);
 
   const goOnContact=()=>{
     const element = document.getElementById("contact");
     window.scrollTo({top:element.offsetTop , behavior:"smooth"});
   }
 
+  const onChangeEmail = (e)=>{
+    setEmail(e?.target?.value);
+  }
+  const onChangeName = (e)=>{
+    setName(e?.target?.value);
+  }
+  const onChangeMessage = (e)=>{
+    setMessage(e?.target?.value);
+  }
+
+const validation = ()=>{
+  setIsSending(true);
+
+  if(email ===""){
+    setIsSending(false);
+    setEmailErr(true);
+    alert("Please enter email id.");
+    return;
+  }else{
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (emailRegex.test(email)) {
+      console.log("true");
+      setIsSending(true);
+      setEmailErr(false);
+    } else {
+      console.log("false");
+      setIsSending(false);
+      setEmailErr(true);
+      alert("Please enter valid email id.");
+      return;
+    }
+    }
+
+
+  if(name ===""){
+  setIsSending(false);
+    setNameErr(true);
+          alert("Please enter name.");
+
+    return;
+  }
+  if(message ===""){
+  setIsSending(false);
+  setMessageErr(true);
+          alert("Please enter message.");
+          return;
+  }
+  
+
+}
+
+
+  const onSend = async() =>{
+    validation();
+    try {
+      const response = await emailjs.send(
+        "service_44g4rvp",
+        "template_m56curn",
+        {
+          from_name: name,
+          message: email + " " + message,
+          from_email: email,
+        },
+        "fRLzCQ_L66bnCubCX"
+      );
+
+      if (response.status === 200) {
+        setIsSent(true);
+        alert("Your message has been sent!");
+        setEmail("");
+        setName("");
+        setMessage("");
+      } else {
+        console.log("responce is --> ", response);
+      }
+    } catch (error) {
+      console.log("Error is ---> ", error);
+      setIsSending(false);
+    }
+    setIsSending(false);
+  }
+
+
+    /**
+     * Resume Download
+     */
+
+    const handleDownload = () => {
+      const pdfUrl = resume; 
+      const link = document.createElement("a");
+      link.href = pdfUrl;
+      link.setAttribute("download", "Sudarshan Gadekar Resume.pdf"); // Download
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
 
 
   return (
@@ -31,7 +139,7 @@ const HeroImg = () => {
           backgroundColor: "rgb(241 241 241)",
         }}
       >
-        <div className="paddingLeftRight">
+        <div>
           <div className="hero">
             <div className="intro-heading">
               <div>Hi! I'm Sudarshan Gadekar</div>
@@ -41,10 +149,25 @@ const HeroImg = () => {
               <img src={IntroImg} alt="Intro" />
             </div>
           </div>
-
-          <button type="button" className="button centerDiv" onClick={goOnContact}>Contact Me</button>
-
           <div className="centerDiv">
+            <button
+              type="button"
+              className="button centerDiv"
+              onClick={goOnContact}
+            >
+              Contact Me
+            </button>
+            <button
+              type="button"
+              className="button centerDiv"
+              onClick={handleDownload}
+            >
+              Resume
+              <DownloadIcon/>
+            </button>
+          </div>
+
+          <div className="centerDiv paddingLeftRight">
             <div>
               <div className="heading centerDiv" id="about">
                 About me
@@ -80,7 +203,7 @@ const HeroImg = () => {
             </div>
           </div>
 
-          <div>
+          <div className="paddingLeftRight">
             <div className="heading centerDiv" id="work">
               Experience
             </div>
@@ -149,7 +272,7 @@ const HeroImg = () => {
             </div>
           </div>
 
-          <div id="contact">
+          <div id="contact" className="paddingLeftRight">
             <div className="heading centerDiv">Get in touch</div>
 
             <Container
@@ -162,39 +285,44 @@ const HeroImg = () => {
                   <EmailOutlinedIcon />
                   <input
                     type="email"
-                    name="Email"
+                    name="email"
                     id="emailId"
                     placeholder="Email"
                     className="customInput"
+                    onChange={(e)=>onChangeEmail(e)}
+                    value={email}
                   />
                 </div>
                 <div className="inputField">
                   <PersonOutlineIcon />
                   <input
                     type="text"
-                    name="Name"
+                    name="name"
                     id="name"
                     placeholder="Name"
                     className="customInput"
+                    onChange={(e)=>onChangeName(e)}
+                    value={name}
                   />
                 </div>
-                <div
-                  className="inputField inputFieldMessage"
-                >
+                <div className="inputField inputFieldMessage">
                   <ChatBubbleOutlineIcon />
                   <textarea
                     name="message"
                     id="message"
                     placeholder="Write message"
                     className="customInput customInputMessage"
+                    onChange={(e)=>onChangeMessage(e)}
+                    value = {message}
                   ></textarea>
                 </div>
                 <div>
-                 
-                  <button type="submit" className="button centerDiv">
-                    Send
-                    <SendIcon sx={{paddingLeft:"10px", color:"inherit",}}/>
-                    </button>
+                  <button type="submit" className={isSent?"disableButton centerDiv":"button centerDiv"} onClick={()=>onSend()} disabled={isSent}>
+                    {isSending?"Sending..." :isSent?"Sent" : "Send"}
+                    {isSent?<CheckIcon sx={{ paddingLeft: "10px", color: "inherit" }}/>:
+                    <SendIcon sx={{ paddingLeft: "10px", color: "inherit" }} />
+                    }
+                  </button>
                 </div>
 
                 <div className="contactInfo centerDiv">
