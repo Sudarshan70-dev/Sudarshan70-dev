@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../style/HeroImgStyle.css";
-import IntroImg from "../assets/Avatar.webp";
+import IntroImg from "../assets/photo11.jpg";
 import MailIcon from "@mui/icons-material/Mail";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import SendIcon from '@mui/icons-material/Send';
@@ -17,14 +17,25 @@ import resume from "../assets/Resume.pdf";
 
 const HeroImg = () => {
 
+  const technologies = [
+    "JavaScript (ES6+)",
+    "TypeScript",
+    "ReactJS",
+    "Node.js",
+    "Mocha",
+    "Selenium",
+    "Appium",
+    "Firebase",
+    "Firestore",
+    "Google Cloud Platform",
+    "Cloud Functions",
+  ];
+
  const [email, setEmail]= useState("");
  const [name, setName]= useState("");
  const [message, setMessage]= useState("");
  const [isSent, setIsSent] = useState(false);
  const [isSending, setIsSending]=useState(false);
- const [emailErr, setEmailErr] = useState(false);
- const [nameErr, setNameErr] = useState(false);
- const [messageErr, setMessageErr] = useState(false);
 
   const goOnContact=()=>{
     const element = document.getElementById("contact");
@@ -46,7 +57,6 @@ const validation = ()=>{
 
   if(email ===""){
     setIsSending(false);
-    setEmailErr(true);
     alert("Please enter email id.");
     return;
   }else{
@@ -54,11 +64,9 @@ const validation = ()=>{
     if (emailRegex.test(email)) {
       console.log("true");
       setIsSending(true);
-      setEmailErr(false);
     } else {
       console.log("false");
       setIsSending(false);
-      setEmailErr(true);
       alert("Please enter valid email id.");
       return;
     }
@@ -67,14 +75,12 @@ const validation = ()=>{
 
   if(name ===""){
   setIsSending(false);
-    setNameErr(true);
           alert("Please enter name.");
 
     return;
   }
   if(message ===""){
   setIsSending(false);
-  setMessageErr(true);
           alert("Please enter message.");
           return;
   }
@@ -163,7 +169,7 @@ const validation = ()=>{
               onClick={handleDownload}
             >
               Resume
-              <DownloadIcon/>
+              <DownloadIcon />
             </button>
           </div>
 
@@ -199,6 +205,22 @@ const validation = ()=>{
                 about building impactful projects for the web and mobile, please
                 don't hesitate to get in touch. Let's work together to bring
                 your ideas to life!
+              </p>
+
+              <p className="justifyContent">
+                Here are a few technologies I’ve been working with recently:
+                <div className="skillSet">
+                  <ul className="list-disc space-y-2">
+                    {technologies.slice(0, 6).map((tech, index) => (
+                      <li key={index}>{tech}</li>
+                    ))}
+                  </ul>
+                  <ul className="list-disc space-y-2">
+                    {technologies.slice(6).map((tech, index) => (
+                      <li key={index}>{tech}</li>
+                    ))}
+                  </ul>
+                </div>
               </p>
             </div>
           </div>
@@ -289,7 +311,7 @@ const validation = ()=>{
                     id="emailId"
                     placeholder="Email"
                     className="customInput"
-                    onChange={(e)=>onChangeEmail(e)}
+                    onChange={(e) => onChangeEmail(e)}
                     value={email}
                   />
                 </div>
@@ -301,7 +323,7 @@ const validation = ()=>{
                     id="name"
                     placeholder="Name"
                     className="customInput"
-                    onChange={(e)=>onChangeName(e)}
+                    onChange={(e) => onChangeName(e)}
                     value={name}
                   />
                 </div>
@@ -312,27 +334,40 @@ const validation = ()=>{
                     id="message"
                     placeholder="Write message"
                     className="customInput customInputMessage"
-                    onChange={(e)=>onChangeMessage(e)}
-                    value = {message}
+                    onChange={(e) => onChangeMessage(e)}
+                    value={message}
                   ></textarea>
                 </div>
                 <div>
-                  <button type="submit" className={isSent?"disableButton centerDiv":"button centerDiv"} onClick={()=>onSend()} disabled={isSent}>
-                    {isSending?"Sending..." :isSent?"Sent" : "Send"}
-                    {isSent?<CheckIcon sx={{ paddingLeft: "10px", color: "inherit" }}/>:
-                    <SendIcon sx={{ paddingLeft: "10px", color: "inherit" }} />
+                  <button
+                    type="submit"
+                    className={
+                      isSent ? "disableButton centerDiv" : "button centerDiv"
                     }
+                    onClick={() => onSend()}
+                    disabled={isSent}
+                  >
+                    {isSending ? "Sending..." : isSent ? "Sent" : "Send"}
+                    {isSent ? (
+                      <CheckIcon
+                        sx={{ paddingLeft: "10px", color: "inherit" }}
+                      />
+                    ) : (
+                      <SendIcon
+                        sx={{ paddingLeft: "10px", color: "inherit" }}
+                      />
+                    )}
                   </button>
                 </div>
 
-                <div className="contactInfo centerDiv">
-                  <div>
-                    <a href="mailto:sudarshangadekar222@gmail.com">
+                <div className="contactInfo ">
+                  <div >
+                    <a href="mailto:sudarshangadekar222@gmail.com" className="contactLinks">
                       <MailIcon /> sudarshangadekar222@gmail.com
                     </a>
                   </div>
-                  <div>
-                    <a href="tel:+917083589566">
+                  <div >
+                    <a  className="contactLinks" href="tel:+917083589566">
                       <LocalPhoneIcon />
                       +91 7083589566
                     </a>

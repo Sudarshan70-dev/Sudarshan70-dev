@@ -12,7 +12,8 @@
     text-align:center;
 }
 .intro-img img{
-    width:40%;
+    width:50%;
+    height: 70%;
     border-radius:50%;
     object-fit:cover;
 }
@@ -93,6 +94,7 @@
 @media (max-width:900px) {
     .hero{
         grid-template-columns:auto;
+        height:100vh;
     }
     .intro-heading{
         text-align: center;
@@ -293,4 +295,18 @@
 .menuClick{
     background-color: rgb(88, 14, 246);
     color: #ffffff;
+}
+
+
+.skillSet{
+    display: grid;
+    grid-template-columns:50% 50%;
+}
+.skillSet ul li{
+    list-style-type: circle;
+}
+
+.contactLinks{
+    display: flex;
+    align-items: center;
 }
