@@ -3,8 +3,6 @@ import React from "react";
 import './index.css';
 import {Route , Routes} from 'react-router-dom'
 import Home from './routes/Home'
-import About from './routes/About'
-import Contact from './routes/Contact'
 
 function App() {
   return (
