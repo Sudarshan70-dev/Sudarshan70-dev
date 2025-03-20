@@ -2,9 +2,6 @@ import "../style/HeroImgStyle.css";
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import WorkIcon from '@mui/icons-material/Work';
-// import PersonIcon from "@mui/icons-material/Person";
-// import ContactMailIcon from '@mui/icons-material/ContactMail';
 import Logo from "../assets/Logo.webp"
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
@@ -42,11 +39,19 @@ const Navbar = () => {
   }
 
 
+  const goOnIntro =()=>{
+    const element = document.getElementById("mainPage");
+    window.scrollTo({top:element.offsetTop, behavior:"smooth"});
+  }
+
+
   return (
     <div className="header">
-      <Link to="/">
+      <div>
+        <button className="logo" onClick={()=>goOnIntro()}>
         <img className="logo" src={Logo} alt="Logo" />
-      </Link>
+        </button>
+      </div>
       <div className="menu">
         <button
           onClick={() => goOnAbout()}

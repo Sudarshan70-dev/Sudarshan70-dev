@@ -13,9 +13,11 @@
 }
 .intro-img img{
     width:50%;
-    height: 70%;
-    border-radius:50%;
-    object-fit:cover;
+    /* height: 70%; */
+    padding:5px;
+    border: solid rgb(88, 14, 246);
+    border-radius:16px;
+    /* object-fit:cover; */
 }
 
 .intro-heading{
@@ -48,12 +50,6 @@
     }
 }
 
-@media (max-width:480px){
-    .hero .typing-container{
-        font-size:2rem;
-    }
-
-}
 
 .typing-container {
     display: inline-block;
@@ -114,6 +110,7 @@
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.25rem;
     line-height: 1.75rem;
+    padding-top:10px;
 }
 
 .positionName{
@@ -309,4 +306,36 @@
 .contactLinks{
     display: flex;
     align-items: center;
+}
+
+.skillList{
+    font-weight:bold;
+}
+
+@media (max-width:480px){
+    .hero{
+        height:55vh;
+    }
+
+    .intro-img{
+        margin:20px 0;
+    }
+
+    .hero .typing-container{
+        font-size:2rem;
+    }
+    
+    .paddingLeftRight{
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+    .workIcon{
+        display:none;
+    }
+
+    .experienceContainer{
+        width:95%
+    }
+
 }

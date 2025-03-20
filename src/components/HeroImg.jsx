@@ -136,7 +136,7 @@ const validation = ()=>{
 
 
   return (
-    <div className="centerDiv">
+    <div id="mainPage" className="centerDiv">
       <Container
         sx={{
           width: "90%",
@@ -145,7 +145,7 @@ const validation = ()=>{
           backgroundColor: "rgb(241 241 241)",
         }}
       >
-        <div>
+        <div >
           <div className="hero">
             <div className="intro-heading">
               <div>Hi! I'm Sudarshan Gadekar</div>
@@ -210,12 +210,12 @@ const validation = ()=>{
               <p className="justifyContent">
                 Here are a few technologies I’ve been working with recently:
                 <div className="skillSet">
-                  <ul className="list-disc space-y-2">
+                  <ul className="list-disc space-y-2 skillList">
                     {technologies.slice(0, 6).map((tech, index) => (
                       <li key={index}>{tech}</li>
                     ))}
                   </ul>
-                  <ul className="list-disc space-y-2">
+                  <ul className="list-disc space-y-2 skillList">
                     {technologies.slice(6).map((tech, index) => (
                       <li key={index}>{tech}</li>
                     ))}
@@ -235,7 +235,7 @@ const validation = ()=>{
               </div>
               <Container
                 sx={{
-                  width: "90%",
+                  width: "95%",
                   backgroundColor: "#ffffff",
                   borderRadius: "16px",
                 }}
@@ -283,7 +283,7 @@ const validation = ()=>{
                       </p>
                     </li>
                     <li>
-                      <p className="justifyContent">
+                      <p className="justifyContent skillList">
                         Skill : ReactJs, JavaScript ES6, Typescript, Firebase,
                         Firestore, Google Cloud Platform, Selenium, Mocha, Git
                       </p>
@@ -347,7 +347,7 @@ const validation = ()=>{
                     onClick={() => onSend()}
                     disabled={isSent}
                   >
-                    {isSending ? "Sending..." : isSent ? "Sent" : "Send"}
+                    {isSent ? "Sent" : "Send"}
                     {isSent ? (
                       <CheckIcon
                         sx={{ paddingLeft: "10px", color: "inherit" }}
