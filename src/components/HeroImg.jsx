@@ -136,7 +136,7 @@ const validation = ()=>{
 
 
   return (
-    <div id="mainPage" className="centerDiv">
+    <div id="mainPage"className="centerDiv">
       <Container
         sx={{
           width: "90%",
@@ -152,7 +152,9 @@ const validation = ()=>{
               <div className="typing-container">Web Developer</div>
             </div>
             <div className="intro-img centerDiv">
+              <div className="movingBorder">
               <img src={IntroImg} alt="Intro" />
+              </div>
             </div>
           </div>
           <div className="centerDiv">

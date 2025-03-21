@@ -23,26 +23,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.btn{
-  padding: 10px;
-  font-size:1rem;
-  font-weight:400;
-  border: 1px solid #ffff00;
-  text-transform : uppercase;
-  cursor : pointer;
-  border-radius : 20%;
-}
-
-.btn-light{
-  border: 1px solid #59e1ef;
-}
-
-.btn:hover{
-  background : #ffff00;
-  transition: 0.4s;
-}
-.btn-light:hover{
-  background : #59e1ef;
-  transition: 0.4s;
-}
