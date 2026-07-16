@@ -47,7 +47,7 @@ Building scalable web applications with React, Next.js, TypeScript, Node.js & Fi
 
 <img align="right" width="350" src="https://media.giphy.com/media/ZVik7pBtu9dNS/giphy.gif"/>
 
-- 💼 Frontend Developer with **2+ Years of Experience**
+- 💼 Full Stack JavaScript Engineer with **2+ Years of Experience**
 
 - 🏢 Former **Member of Technical Staff @ Vendekin Technologies**
 
