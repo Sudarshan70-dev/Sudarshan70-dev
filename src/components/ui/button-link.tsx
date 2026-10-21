@@ -38,8 +38,8 @@ export function ButtonLink({
 
   const content = (
     <>
-      <span>{children}</span>
-      {trailingIcon ? <ArrowUpRight className="h-4 w-4" /> : null}
+      <span className="inline-flex items-center justify-center gap-2 whitespace-nowrap">{children}</span>
+      {trailingIcon ? <ArrowUpRight className="h-4 w-4 shrink-0" /> : null}
     </>
   );
 
