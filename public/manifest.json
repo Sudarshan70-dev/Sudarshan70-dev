@@ -1,6 +1,7 @@
 {
-  "short_name": "Sudarshan Gadekar",
-  "name": "Sudarshan Gadekar",
+  "short_name": "Sudarshan",
+  "name": "Sudarshan Gadekar | Full Stack Developer | React Developer",
+  "description": "Portfolio of Sudarshan Gadekar, a Pune-based Full Stack and React Developer.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +21,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#1e1e1e",
+  "background_color": "#1e1e1e"
 }
