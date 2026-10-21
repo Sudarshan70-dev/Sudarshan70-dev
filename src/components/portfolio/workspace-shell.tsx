@@ -408,18 +408,22 @@ function TerminalPanel({
       } else if (navigationPrefix) {
         window.location.href = `${navigationPrefix}#${destination}`;
       }
-      setLines((current) => [
-        ...current,
+      const nextLines: TerminalLine[] = [
         { text: `$ ${value}`, tone: "cyan" },
         { text: `Opened ${destination}.`, tone: "green" },
-      ].slice(-8));
+      ];
+      setLines((current) => [...current, ...nextLines].slice(-8));
       return;
     }
 
     const response = value === "help"
       ? "Commands: hero, about, skills, experience, projects, achievements, contact, clear"
       : `Command not found: ${value}. Type help to see available commands.`;
-    setLines((current) => [...current, { text: `$ ${value}`, tone: "cyan" }, { text: response, tone: "muted" }].slice(-8));
+    const nextLines: TerminalLine[] = [
+      { text: `$ ${value}`, tone: "cyan" },
+      { text: response, tone: "muted" },
+    ];
+    setLines((current) => [...current, ...nextLines].slice(-8));
   };
 
   return (
