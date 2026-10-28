@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
       title: `${project.title} | Case Study`,
       description: project.summary,
       url: `/projects/${project.slug}`,
-      images: [{ url: "/hero-photo.jpg", alt: "Sudarshan Gadekar, frontend engineer" }],
+      images: [{ url: "/hero-photo.jpg", alt: "Sudarshan Gadekar, Full Stack Developer" }],
     },
     twitter: {
       card: "summary_large_image",

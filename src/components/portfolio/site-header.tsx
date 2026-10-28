@@ -74,7 +74,7 @@ export function SiteHeader({ resumeHref }: { resumeHref: string }) {
           </div>
           <div className="hidden sm:block">
             <p className="text-sm font-semibold text-white">Sudarshan Gadekar</p>
-            <p className="text-xs text-slate-400">Frontend Engineer</p>
+            <p className="text-xs text-slate-400">Full Stack Developer</p>
           </div>
         </Link>
 

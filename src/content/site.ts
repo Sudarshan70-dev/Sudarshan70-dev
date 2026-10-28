@@ -22,7 +22,7 @@ export const socialLinks: SocialLink[] = [
 
 export const profile: Profile = {
   name: "Sudarshan Gadekar",
-  headline: "Frontend Engineer crafting premium SaaS interfaces, product surfaces, and resilient React systems.",
+  headline: "Full Stack Developer crafting premium SaaS interfaces, product surfaces, and resilient React systems.",
   roles: ["Full Stack Developer","React Developer", "Frontend Engineer", "Product Engineer", ],
   intro:
     "I build recruiter-ready user experiences that combine visual polish, product thinking, and reliable implementation.",
@@ -40,7 +40,7 @@ export const profile: Profile = {
     density: "high",
   },
   about: [
-    "I enjoy translating complex workflows into polished, fast, and trustworthy interfaces. My recent work sits at the intersection of frontend engineering, admin tools, cloud-backed products, and operational UX.",
+    "Full-stack developer focused on building end-to-end cloud products, powerful admin tools, and high-performance user interfaces that simplify complex operational workflows.",
     "At Vendekin, I worked across the VNetra admin ecosystem: onboarding vending machines, handling inventory workflows, shaping planogram management, and integrating external services that operators depend on every day.",
     "I bring a product mindset to engineering work. That means reusable components, performance-aware implementation, accessible interaction design, and enough testing discipline to keep real production workflows reliable.",
   ],
@@ -250,7 +250,7 @@ export const contactConfig: ContactConfig = {
   email: "sudarshangadekar222@gmail.com",
   phone: "+91 7083589566",
   location: "Pune, Maharashtra, India",
-  availability: "Immediate joiner for Frontend Engineer, Product Engineer, and React roles.",
+  availability: "Immediate joiner for Full Stack Developer, Product Engineer, and React Developer roles.",
   note:
     "If you are hiring for premium frontend work, admin dashboards, SaaS products, or product-focused full stack roles, I would be glad to connect.",
 };

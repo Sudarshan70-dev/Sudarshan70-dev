@@ -5,9 +5,9 @@ import { siteUrl } from "@/lib/site-config";
 
 import "./globals.css";
 
-const siteTitle = "Sudarshan Gadekar | Frontend Engineer in Pune, India";
+const siteTitle = "Sudarshan Gadekar | Full Stack Developer in Pune, India";
 const siteDescription =
-  "Portfolio of Sudarshan Gadekar, a Pune-based frontend and product engineer building React and TypeScript applications, SaaS dashboards, and cloud-backed web products.";
+  "Portfolio of Sudarshan Gadekar, a Pune-based Full Stack Developer building React, JavaScript and TypeScript applications, SaaS dashboards, and cloud-backed web products.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   category: "portfolio",
   keywords: [
     "Sudarshan Gadekar",
+    "Full Stack Developer Pune",
+    "React Developer Pune",
+    "TypeScript Developer",
     "Frontend Engineer Pune",
     "React Developer India",
     "TypeScript Developer",
@@ -51,7 +54,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     url: siteUrl,
     siteName: "Sudarshan Gadekar Portfolio",
-    images: [{ url: "/hero-photo.jpg", alt: "Sudarshan Gadekar, frontend engineer" }],
+    images: [{ url: "/hero-photo.jpg", alt: "Sudarshan Gadekar, Full Stack Developer" }],
     locale: "en_IN",
     type: "website",
   },
@@ -59,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: [{ url: "/hero-photo.jpg", alt: "Sudarshan Gadekar, frontend engineer" }],
+    images: [{ url: "/hero-photo.jpg", alt: "Sudarshan Gadekar, Full Stack Developer" }],
   },
   icons: {
     icon: "/favicon.ico",
@@ -82,7 +85,7 @@ const structuredData = [
     name: profile.name,
     url: siteUrl,
     image: `${siteUrl}/hero-photo.jpg`,
-    jobTitle: "Frontend Engineer",
+    jobTitle: "Full Stack Developer | React Developer | Frontend Engineer | Product Engineer",
     description: profile.headline,
     address: {
       "@type": "PostalAddress",
