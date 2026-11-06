@@ -9,35 +9,64 @@ type ProjectPageProps = {
   params: Promise<{ slug: string }>;
 };
 
+// 1. Instantly return 404 for unknown slugs without invoking serverless compute
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
 
-export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
   if (!project) {
-    return {};
+    return {
+      title: "Project Not Found",
+      robots: { index: false, follow: false },
+    };
   }
+
+  const projectUrl = `${siteUrl}/projects/${project.slug}`;
+  const ogImage =
+    (project as { image?: string }).image || "/hero-photo.jpg";
 
   return {
     title: `${project.title} Case Study`,
     description: project.summary,
+    keywords: [
+      project.title,
+      ...project.stack,
+      "Case Study",
+      "Sudarshan Gadekar",
+      "Full-Stack Software Engineer",
+    ],
     alternates: {
-      canonical: `/projects/${project.slug}`,
+      canonical: projectUrl,
     },
     openGraph: {
-      title: `${project.title} | Case Study`,
+      type: "article",
+      title: `${project.title} | Case Study by Sudarshan Gadekar`,
       description: project.summary,
-      url: `/projects/${project.slug}`,
-      images: [{ url: "/hero-photo.jpg", alt: "Sudarshan Gadekar, Full Stack Developer" }],
+      url: projectUrl,
+      siteName: "Sudarshan Gadekar Portfolio",
+      locale: "en_IN",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${project.title} - Case Study by Sudarshan Gadekar`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${project.title} | Case Study`,
+      title: `${project.title} | Case Study by Sudarshan Gadekar`,
       description: project.summary,
-      images: ["/hero-photo.jpg"],
+      images: [ogImage],
     },
   };
 }
@@ -50,24 +79,55 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
+  const projectUrl = `${siteUrl}/projects/${project.slug}`;
+
+  // 2. Upgraded JSON-LD combining SoftwareSourceCode/CreativeWork + BreadcrumbList
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    name: project.title,
-    description: project.summary,
-    url: `${siteUrl}/projects/${project.slug}`,
-    creator: { "@id": `${siteUrl}/#person` },
-    keywords: project.stack.join(", "),
-    inLanguage: "en-IN",
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+        "@id": `${projectUrl}/#project`,
+        name: project.title,
+        headline: `${project.title} - Case Study`,
+        description: project.summary,
+        url: projectUrl,
+        image: `${siteUrl}/hero-photo.jpg`,
+        author: { "@id": `${siteUrl}/#person` },
+        creator: { "@id": `${siteUrl}/#person` },
+        keywords: project.stack.join(", "),
+        inLanguage: "en-IN",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${projectUrl}/#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: project.title,
+            item: projectUrl,
+          },
+        ],
+      },
+    ],
   };
 
   return (
     <>
-      <ProjectCaseStudyPage project={project} />
       <script
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
         type="application/ld+json"
       />
+      <ProjectCaseStudyPage project={project}/>
     </>
   );
 }

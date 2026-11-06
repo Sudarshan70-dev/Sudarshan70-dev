@@ -1,123 +1,138 @@
 import type { Metadata, Viewport } from "next";
-
-import { profile, socialLinks } from "@/content/site";
 import { siteUrl } from "@/lib/site-config";
-
 import "./globals.css";
 
-const siteTitle = "Sudarshan Gadekar | Full Stack Developer in Pune, India";
-const siteDescription =
-  "Portfolio of Sudarshan Gadekar, a Pune-based Full Stack Developer building React, JavaScript and TypeScript applications, SaaS dashboards, and cloud-backed web products.";
+export const viewport: Viewport = {
+  themeColor: "#0a0a0a", // Matches dark/HUD theme on mobile browsers
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: siteTitle,
+    default: "Sudarshan Gadekar | Full-Stack Developer | React Developer",
     template: "%s | Sudarshan Gadekar",
   },
-  description: siteDescription,
-  applicationName: "Sudarshan Gadekar Portfolio",
-  manifest: "/manifest.json",
-  category: "portfolio",
+  description:
+    "Portfolio of Sudarshan Raju Gadekar, a Full-Stack Developer specializing in React.js, Next.js, TypeScript, Node.js, Google Cloud Platform, and Firebase.",
   keywords: [
     "Sudarshan Gadekar",
-    "Full Stack Developer Pune",
-    "React Developer Pune",
-    "TypeScript Developer",
-    "Frontend Engineer Pune",
-    "React Developer India",
-    "TypeScript Developer",
-    "Product Engineer",
-    "SaaS dashboard development",
+    "Sudarshan Raju Gadekar",
+    "Full-Stack Developer",
+    "Frontend Developer",
+    "Web Developer",
+    "React.js Developer",
+    "Next.js Developer",
+    "TypeScript",
+    "Node.js",
     "Firebase",
-    "Google Cloud Functions",
-    "Selenium",
-    "Mocha",
+    "Google Cloud Platform",
+    "Software Engineer Pune",
   ],
-  authors: [{ name: profile.name, url: siteUrl }],
-  creator: profile.name,
-  publisher: profile.name,
-  alternates: { canonical: "/" },
+  authors: [{ name: "Sudarshan Raju Gadekar", url: siteUrl }],
+  creator: "Sudarshan Raju Gadekar",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: siteUrl,
+    siteName: "Sudarshan Gadekar Portfolio",
+    title: "Sudarshan Gadekar | Full-Stack Developer | React Developer",
+    description:
+      "Full-Stack Developer specializing in React.js, Next.js, TypeScript, Node.js, and modern cloud architecture like Firebase, Google Cloud Platform. Explore my projects and case studies.",
+    images: [
+      {
+        url: "/og-image.png", // Add a 1200x630px screenshot of your portfolio in public/og-image.png
+        width: 1200,
+        height: 630,
+        alt: "Sudarshan Gadekar - Full-Stack Developer Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sudarshan Gadekar | Full-Stack Developer | React Developer",
+    description:
+      "Full-Stack Developer specializing in React.js, Next.js, TypeScript, Firebase and Google Cloud Platform.",
+    images: ["/og-image.png"],
+  },
   robots: {
     index: true,
     follow: true,
     googleBot: {
       index: true,
       follow: true,
+      "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
-      "max-video-preview": -1,
     },
   },
-  openGraph: {
-    title: siteTitle,
-    description: siteDescription,
-    url: siteUrl,
-    siteName: "Sudarshan Gadekar Portfolio",
-    images: [{ url: "/hero-photo.jpg", alt: "Sudarshan Gadekar, Full Stack Developer" }],
-    locale: "en_IN",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteTitle,
-    description: siteDescription,
-    images: [{ url: "/hero-photo.jpg", alt: "Sudarshan Gadekar, Full Stack Developer" }],
-  },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/logo192.png",
-  },
 };
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  colorScheme: "dark",
-  themeColor: "#1e1e1e",
-};
-
-const structuredData = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": `${siteUrl}/#person`,
-    name: profile.name,
-    url: siteUrl,
-    image: `${siteUrl}/hero-photo.jpg`,
-    jobTitle: "Full Stack Developer | React Developer | Frontend Engineer | Product Engineer",
-    description: profile.headline,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Pune",
-      addressRegion: "Maharashtra",
-      addressCountry: "IN",
-    },
-    sameAs: socialLinks.filter((link) => link.external).map((link) => link.href),
-    knowsAbout: ["React.js", "TypeScript", "SaaS dashboards", "Firebase", "Google Cloud Functions", "Selenium", "Mocha"],
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Sudarshan Gadekar Portfolio",
-    url: siteUrl,
-    inLanguage: "en-IN",
-  },
-];
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${siteUrl}/#person`,
+        name: "Sudarshan Raju Gadekar",
+        givenName: "Sudarshan",
+        familyName: "Gadekar",
+        url: siteUrl,
+        jobTitle: "Full-Stack Developer | React Developer",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Pune",
+          addressRegion: "Maharashtra",
+          addressCountry: "IN",
+        },
+        knowsAbout: [
+          "React.js",
+          "Next.js",
+          "TypeScript",
+          "JavaScript",
+          "Java",
+          "Node.js",
+          "Firebase",
+          "Express.js",
+          "Google Cloud Platform",
+          "Supabase",
+          "PostgreSQL",
+          "Tailwind CSS",
+        ],
+        sameAs: [
+          // Replace or add your exact profile URLs here
+          "https://github.com/sudarshan70",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        url: siteUrl,
+        name: "Sudarshan Gadekar Portfolio",
+        publisher: {
+          "@id": `${siteUrl}/#person`,
+        },
+      },
+    ],
+  };
+
   return (
-    <html lang="en-IN">
+    <html lang="en">
       <body>
-        {children}
         <script
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
           type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {children}
       </body>
     </html>
   );
