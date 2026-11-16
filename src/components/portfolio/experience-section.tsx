@@ -11,7 +11,7 @@ export function ExperienceSection({ items }: { items: ExperienceItem[] }) {
     <section className="section-anchor px-4 py-10 sm:px-6 lg:px-10" data-section id="experience">
       <div className="mx-auto max-w-5xl">
         <SectionHeading
-          description="The experience story is framed as product engineering: shipping operational interfaces, supporting real workflows, and keeping the delivery reliable under production pressure."
+          description="At Vendekin Technology, I contributed to the VNetra product team across React interfaces, operator workflows, integrations, test automation, and production support."
           eyebrow="Experience.json"
           title="Experience built around enterprise-style workflows and SaaS delivery."
         />

@@ -28,6 +28,7 @@ export function ContactSection({
   socialLinks: SocialLink[];
 }) {
   const [form, setForm] = useState({
+    enquiryType: "Project enquiry",
     name: "",
     email: "",
     message: "",
@@ -49,6 +50,7 @@ export function ContactSection({
       const trimmedName = form.name.trim();
       const trimmedEmail = form.email.trim();
       const trimmedMessage = form.message.trim();
+      const enquiryType = form.enquiryType;
 
       if (!trimmedName || !trimmedEmail || !trimmedMessage) {
         setSubmissionState({
@@ -76,7 +78,7 @@ export function ContactSection({
         window.location.href = buildMailtoLink(
           contact.email,
           `Portfolio enquiry from ${trimmedName}`,
-          `${trimmedMessage}\n\nFrom: ${trimmedName}\nReply to: ${trimmedEmail}`,
+          `${trimmedMessage}\n\nTopic: ${enquiryType}\nFrom: ${trimmedName}\nReply to: ${trimmedEmail}`,
         );
 
         setSubmissionState({
@@ -93,12 +95,14 @@ export function ContactSection({
           {
             from_name: trimmedName,
             from_email: trimmedEmail,
+            enquiry_type: enquiryType,
             message: trimmedMessage,
           },
           publicKey,
         );
 
         setForm({
+          enquiryType: "Project enquiry",
           name: "",
           email: "",
           message: "",
@@ -121,7 +125,7 @@ export function ContactSection({
     <section className="section-anchor px-4 py-10 sm:px-6 lg:px-10" data-section id="contact">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          description="The portfolio ends with a clean conversion path: direct reach out, recruiter-friendly details, and a form that still works even when EmailJS is not configured."
+          description="For a role, collaboration, or project, share a little context about the product and the help you need."
           eyebrow="Contact"
           title="Ready for frontend, product, and SaaS-focused conversations."
         />
@@ -136,18 +140,18 @@ export function ContactSection({
                   className="glass-panel flex items-center gap-3 rounded-[1.25rem] px-4 py-4 transition hover:border-cyan-300/24"
                   href={`mailto:${contact.email}`}
                 >
-                  <Mail className="h-4 w-4 text-cyan-300" />
+                  <Mail aria-hidden="true" className="h-4 w-4 text-cyan-300" />
                   <span>{contact.email}</span>
                 </a>
                 <a
                   className="glass-panel flex items-center gap-3 rounded-[1.25rem] px-4 py-4 transition hover:border-cyan-300/24"
                   href={`tel:${contact.phone.replace(/\s+/g, "")}`}
                 >
-                  <PhoneCall className="h-4 w-4 text-cyan-300" />
+                  <PhoneCall aria-hidden="true" className="h-4 w-4 text-cyan-300" />
                   <span>{contact.phone}</span>
                 </a>
                 <div className="glass-panel flex items-center gap-3 rounded-[1.25rem] px-4 py-4">
-                  <MapPin className="h-4 w-4 text-cyan-300" />
+                  <MapPin aria-hidden="true" className="h-4 w-4 text-cyan-300" />
                   <span>{contact.location}</span>
                 </div>
               </div>
@@ -165,12 +169,13 @@ export function ContactSection({
                   return (
                     <a
                       key={link.label}
+                      aria-label={`${link.label} profile`}
                       className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-slate-950/60 text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100"
                       href={link.href}
                       rel={link.external ? "noreferrer" : undefined}
                       target={link.external ? "_blank" : undefined}
                     >
-                      <Icon className="h-4 w-4" />
+                      <Icon aria-hidden="true" className="h-4 w-4" />
                     </a>
                   );
                 })}
@@ -182,39 +187,63 @@ export function ContactSection({
             <div className="section-card rounded-[2rem] p-6 sm:p-8">
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="input-shell rounded-[1.3rem] px-4 py-3">
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400" htmlFor="contact-enquiry-type">
+                    What is this about?
+                  </label>
+                  <select
+                    className="input-field"
+                    id="contact-enquiry-type"
+                    name="enquiry_type"
+                    onChange={(event) => onFieldChange("enquiryType", event.target.value)}
+                    value={form.enquiryType}
+                  >
+                    <option>Project enquiry</option>
+                    <option>Full-time role</option>
+                    <option>Collaboration or other</option>
+                  </select>
+                </div>
+                <div className="input-shell rounded-[1.3rem] px-4 py-3">
+                  <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400" htmlFor="contact-name">
                     Name
                   </label>
                   <input
                     className="input-field"
+                    autoComplete="name"
+                    id="contact-name"
                     name="name"
                     onChange={(event) => onFieldChange("name", event.target.value)}
                     placeholder="Your name"
+                    required
                     value={form.name}
                   />
                 </div>
                 <div className="input-shell rounded-[1.3rem] px-4 py-3">
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400" htmlFor="contact-email">
                     Email
                   </label>
                   <input
                     className="input-field"
+                    autoComplete="email"
+                    id="contact-email"
                     name="email"
                     onChange={(event) => onFieldChange("email", event.target.value)}
                     placeholder="you@company.com"
+                    required
                     type="email"
                     value={form.email}
                   />
                 </div>
                 <div className="input-shell rounded-[1.3rem] px-4 py-3">
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400" htmlFor="contact-message">
                     Message
                   </label>
                   <textarea
                     className="input-field min-h-36 resize-none"
+                    id="contact-message"
                     name="message"
                     onChange={(event) => onFieldChange("message", event.target.value)}
                     placeholder="Tell me about the role, product, or project context."
+                    required
                     value={form.message}
                   />
                 </div>
@@ -235,6 +264,8 @@ export function ContactSection({
 
                 {submissionState.message ? (
                   <p
+                    aria-live={submissionState.tone === "error" ? "assertive" : "polite"}
+                    role={submissionState.tone === "error" ? "alert" : "status"}
                     className={`rounded-[1.2rem] border px-4 py-3 text-sm leading-6 ${
                       submissionState.tone === "success"
                         ? "border-emerald-400/20 bg-emerald-400/10 text-emerald-100"

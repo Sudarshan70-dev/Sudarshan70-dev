@@ -22,12 +22,12 @@ export const socialLinks: SocialLink[] = [
 
 export const profile: Profile = {
   name: "Sudarshan Gadekar",
-  headline: "Full Stack Developer crafting premium SaaS interfaces, product surfaces, and resilient React systems.",
-  roles: ["Full Stack Developer","React Developer", "Frontend Engineer", "Product Engineer", ],
+  headline: "Frontend-focused Full-Stack Developer specializing in React.js.",
+  roles: ["Full-Stack Developer", "React.js Developer", "Next.js Developer", "Frontend Engineer"],
   intro:
-    "I build recruiter-ready user experiences that combine visual polish, product thinking, and reliable implementation.",
+    "I build responsive SaaS interfaces, business dashboards, and web application workflows for product teams.",
   summary:
-    "React, TypeScript, Firebase, Google Cloud Functions, and automation testing across SaaS dashboards, admin systems, and real-time web workflows.",
+    "My core frontend stack is React.js, Next.js, and TypeScript, with practical experience integrating REST APIs, Firebase, and cloud functions.",
   availability: "Immediate Joiner",
   experience: "2+ years shipping product features and admin workflows.",
   location: "Pune, Maharashtra, India",
@@ -40,9 +40,9 @@ export const profile: Profile = {
     density: "high",
   },
   about: [
-    "Full-stack developer focused on building end-to-end cloud products, powerful admin tools, and high-performance user interfaces that simplify complex operational workflows.",
-    "At Vendekin, I worked across the VNetra admin ecosystem: onboarding vending machines, handling inventory workflows, shaping planogram management, and integrating external services that operators depend on every day.",
-    "I bring a product mindset to engineering work. That means reusable components, performance-aware implementation, accessible interaction design, and enough testing discipline to keep real production workflows reliable.",
+    "I am a Pune-based, frontend-focused full-stack developer. React.js, Next.js, and TypeScript are my strongest areas across SaaS dashboards, business applications, and operational tools.",
+    "At Vendekin Technology, I contributed to the VNetra product team across React interfaces, machine onboarding, inventory and planogram workflows, API integrations, testing, and production support.",
+    "I also work with Node.js, Firebase, Firestore, and Google Cloud Functions where they support the product scope. I keep my project responsibilities clear and focus on features I can demonstrate.",
   ],
   valuePillars: [
     {
@@ -59,7 +59,7 @@ export const profile: Profile = {
     },
     {
       title: "Cloud-ready delivery",
-      description: "Hands-on with Firebase, Firestore, REST integrations, and Google Cloud Functions for scalable web products.",
+      description: "Hands-on with Firebase, Firestore, REST integrations, and Google Cloud Functions within product scope.",
     },
   ],
 };
@@ -121,7 +121,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "Backend + Cloud",
-    subtitle: "Product logic that supports real usage, not just demos.",
+    subtitle: "API and cloud work that supports the product interface.",
     tools: [
       "Node.js",
       "Firebase",
@@ -129,18 +129,18 @@ export const skillGroups: SkillGroup[] = [
       "Google Cloud Platform",
       "Cloud Functions",
       "REST APIs",
-      "Real-time Data Workflows",
+      "Data-backed Workflows",
       "Messaging Service Integration",
       "Google Maps Integration",
-      "Secure Backend Utilities",
+      "Payment and Messaging Integrations",
     ],
     outcomes: [
-      "Real-time data-backed experiences",
-      "Scalable backend utilities",
-      "Reliable integration-driven product flows",
+      "REST API and Firebase/Firestore integrations",
+      "Cloud Function workflows within product scope",
+      "Frontend and service responsibilities defined for each project",
     ],
-    focusAreas: ["Cloud services", "API orchestration", "Operational backend flows"],
-    proof: "Used for notifications, content handling, machine onboarding, and cloud-backed product workflows.",
+    focusAreas: ["REST API integration", "Firebase data workflows", "Cloud Functions"],
+    proof: "Hands-on with notifications, Firestore data, and Cloud Functions in product workflows.",
     scene: {
       accent: "#8b5cf6",
       depth: 1.15,
@@ -230,17 +230,17 @@ export const skillGroups: SkillGroup[] = [
 export const experience: ExperienceItem[] = [
   {
     company: "Vendekin Technology Pvt Ltd",
-    role: "Web Developer, Member of Technical Staff",
-    duration: "December 2022 - September 2024",
+    role: "Member of Technical Staff / React Developer (Full-time)",
+    duration: "Dec 2022 - Sep 2024",
     location: "Pune, Maharashtra",
     summary:
-      "Worked across an enterprise-facing vending machine management SaaS platform, shaping frontend systems, backend integrations, and automation coverage for operational workflows.",
+      "Contributed to VNetra, Vendekin's vending management SaaS product, across React interfaces, service integrations, testing, and production support.",
     highlights: [
-      "Built and maintained the VNetra Admin Panel used for inventory management, onboarding, reporting, and operator workflows.",
+      "Led frontend feature development for the VNetra Admin Panel, including onboarding, inventory, reporting, and operator workflows.",
       "Implemented reusable React components and responsive interaction patterns for data-heavy admin experiences.",
-      "Integrated third-party APIs such as messaging services to support real-time notifications and smoother operational communication.",
-      "Developed Google Cloud Function-backed services for scalable request handling and secure product workflows.",
-      "Created Selenium and Mocha automation coverage while also resolving production issues across web and Android touchpoints.",
+      "Integrated messaging REST APIs to support product notifications and operational communication.",
+      "Worked with Node.js, Firebase/Firestore, and Google Cloud Functions on serverless product workflows.",
+      "Authored Selenium automation suites and Mocha JavaScript unit tests, and helped resolve production issues.",
     ],
     stack: ["React.js", "TypeScript", "JavaScript", "Firebase", "Firestore", "Google Cloud Functions", "Selenium", "Mocha", "Git"],
   },

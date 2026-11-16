@@ -11,25 +11,12 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Sudarshan Gadekar | Full-Stack Developer | React Developer",
+    default: "Sudarshan Gadekar | React.js Developer in Pune, India",
     template: "%s | Sudarshan Gadekar",
   },
   description:
-    "Portfolio of Sudarshan Raju Gadekar, a Full-Stack Developer specializing in React.js, Next.js, TypeScript, Node.js, Google Cloud Platform, and Firebase.",
-  keywords: [
-    "Sudarshan Gadekar",
-    "Sudarshan Raju Gadekar",
-    "Full-Stack Developer",
-    "Frontend Developer",
-    "Web Developer",
-    "React.js Developer",
-    "Next.js Developer",
-    "TypeScript",
-    "Node.js",
-    "Firebase",
-    "Google Cloud Platform",
-    "Software Engineer Pune",
-  ],
+    "Sudarshan Gadekar is a frontend-focused full-stack developer in Pune, specializing in React.js, Next.js, and TypeScript for responsive web products and SaaS dashboards.",
+  applicationName: "Sudarshan Gadekar Portfolio",
   authors: [{ name: "Sudarshan Raju Gadekar", url: siteUrl }],
   creator: "Sudarshan Raju Gadekar",
   alternates: {
@@ -40,24 +27,24 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: siteUrl,
     siteName: "Sudarshan Gadekar Portfolio",
-    title: "Sudarshan Gadekar | Full-Stack Developer | React Developer",
+    title: "Sudarshan Gadekar | React.js Developer in Pune, India",
     description:
-      "Full-Stack Developer specializing in React.js, Next.js, TypeScript, Node.js, and modern cloud architecture like Firebase, Google Cloud Platform. Explore my projects and case studies.",
+      "Explore the React.js, Next.js, and SaaS product work of Sudarshan Gadekar, a frontend-focused full-stack developer in Pune, India.",
     images: [
       {
-        url: "/og-image.png", // Add a 1200x630px screenshot of your portfolio in public/og-image.png
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Sudarshan Gadekar - Full-Stack Developer Portfolio",
+        alt: "Sudarshan Gadekar, frontend-focused full-stack developer specializing in React.js",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sudarshan Gadekar | Full-Stack Developer | React Developer",
+    title: "Sudarshan Gadekar | React.js Developer in Pune, India",
     description:
-      "Full-Stack Developer specializing in React.js, Next.js, TypeScript, Firebase and Google Cloud Platform.",
-    images: ["/og-image.png"],
+      "React.js, Next.js, and SaaS product interfaces by Sudarshan Gadekar in Pune, India.",
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
@@ -87,7 +74,7 @@ export default function RootLayout({
         givenName: "Sudarshan",
         familyName: "Gadekar",
         url: siteUrl,
-        jobTitle: "Full-Stack Developer | React Developer",
+        jobTitle: "Frontend-focused Full-Stack Developer specializing in React.js",
         address: {
           "@type": "PostalAddress",
           addressLocality: "Pune",
@@ -109,8 +96,8 @@ export default function RootLayout({
           "Tailwind CSS",
         ],
         sameAs: [
-          // Replace or add your exact profile URLs here
-          "https://github.com/sudarshan70",
+          "https://github.com/Sudarshan70-dev",
+          "https://www.linkedin.com/in/sudarshan-gadekar-21715b256/",
         ],
       },
       {
@@ -130,7 +117,7 @@ export default function RootLayout({
       <body>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
         />
         {children}
       </body>

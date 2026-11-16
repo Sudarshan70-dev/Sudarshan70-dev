@@ -13,9 +13,9 @@ export function AboutSection({ profile }: { profile: Profile }) {
     <section className="section-anchor px-4 py-10 sm:px-6 lg:px-10" data-section id="about">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          description="The goal is simple: make teams feel like they are looking at a product engineer who can elevate both interface quality and implementation confidence."
+          description="I build responsive product interfaces and operational workflows with React.js, Next.js, TypeScript, and cloud service integrations."
           eyebrow="About"
-          title="Designed for product teams, not just portfolio browsers."
+          title="Focused on useful product interfaces."
         />
 
         <div className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">

@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-export const alt = "Sudarshan Gadekar | Full-Stack Software Engineer";
+export const alt = "Sudarshan Gadekar | Frontend-focused Full-Stack Developer specializing in React.js";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -89,7 +89,7 @@ export default async function Image() {
               marginBottom: "36px",
             }}
           >
-            Full-Stack & Software Engineer
+            React.js & Next.js Developer | Pune, India
           </div>
 
           {/* Tech Stack Badges */}

@@ -265,7 +265,8 @@ textarea {
   .ambient-float,
   .ambient-pulse,
   .grid-drift,
-  .perspective-card {
+  .perspective-card,
+  .motion-reveal {
     animation: none !important;
     transition: none !important;
     transform: none !important;
@@ -658,16 +659,18 @@ textarea {
 .workspace-scroll main { position: relative; }
 
 /* The homepage follows the supplied editor mockup: one open file at a time.
-   Skills and achievements live under About so none of the existing content is lost. */
+   Skills live under About within the existing portfolio flow. */
 .workspace-scroll[data-home-view="true"] main [data-section] { display: none; }
 .workspace-scroll[data-home-view="true"][data-active-file="hero"] main [data-section]#hero,
-.workspace-scroll[data-home-view="true"][data-active-file="about"] main [data-section]:is(#about, #skills, #achievements),
+.workspace-scroll[data-home-view="true"][data-active-file="about"] main [data-section]:is(#about, #skills),
+.workspace-scroll[data-home-view="true"][data-active-file="services"] main [data-section]#services,
 .workspace-scroll[data-home-view="true"][data-active-file="projects"] main [data-section]#projects,
 .workspace-scroll[data-home-view="true"][data-active-file="experience"] main [data-section]#experience,
 .workspace-scroll[data-home-view="true"][data-active-file="contact"] main [data-section]#contact { display: block; }
 
 .workspace-scroll[data-home-view="true"][data-active-file="hero"] > footer,
 .workspace-scroll[data-home-view="true"][data-active-file="about"] > footer,
+.workspace-scroll[data-home-view="true"][data-active-file="services"] > footer,
 .workspace-scroll[data-home-view="true"][data-active-file="projects"] > footer,
 .workspace-scroll[data-home-view="true"][data-active-file="experience"] > footer { display: none; }
 
@@ -840,7 +843,7 @@ textarea {
   outline-offset: 2px;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 639px) {
   .workspace-explorer { display: none; }
   .workspace-menu-toggle { display: inline-flex; }
 }

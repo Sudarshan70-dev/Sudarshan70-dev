@@ -19,7 +19,7 @@ export function HeroSection({
       <div className="mx-auto max-w-6xl">
         <div className="mb-5 space-y-1 font-mono text-xs text-slate-400">
           <p><span className="mr-4 text-slate-600">1</span><span className="text-pink-300">import</span> React <span className="text-pink-300">from</span> <span className="text-amber-200">&apos;react&apos;</span>;</p>
-          <p><span className="mr-4 text-slate-600">2</span><span className="text-emerald-300">// Full Stack Developer · React · Pune, Maharashtra, India</span></p>
+          <p><span className="mr-4 text-slate-600">2</span><span className="text-emerald-300">// Frontend-focused Full-Stack Developer | React.js</span></p>
         </div>
 
         <MotionReveal>
@@ -31,10 +31,12 @@ export function HeroSection({
               </div>
 
               <p className="mt-6 font-mono text-sm text-blue-300">Hi, I&apos;m</p>
-              <h1 className="section-title mt-1 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+              <p className="section-title mt-1 text-4xl font-bold tracking-tight text-white sm:text-5xl">
                 {profile.name}<span className="text-[#007acc]">.</span>
+              </p>
+              <h1 className="mt-3 max-w-3xl text-2xl font-semibold leading-tight text-cyan-100 sm:text-3xl">
+                Frontend-Focused Full-Stack Developer in Pune, India
               </h1>
-              <p className="mt-3 font-mono text-lg text-cyan-200 sm:text-xl">Full Stack Developer | React Developer</p>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
                 {profile.headline} {profile.intro} {profile.summary}
               </p>
@@ -50,15 +52,15 @@ export function HeroSection({
               <div className="mt-7 flex flex-wrap gap-3 font-mono text-xs">
                 <ButtonLink href="#contact" variant="primary">
                   <Mail aria-hidden="true" className="h-4 w-4" />
-                  Contact_Me()
+                  Discuss a Project
                 </ButtonLink>
                 <ButtonLink href="#projects" variant="secondary">
                   <FolderGit2 aria-hidden="true" className="h-4 w-4" />
-                  View_Projects()
+                  Explore Projects
                 </ButtonLink>
                 <ButtonLink download href={profile.resumeHref} variant="ghost">
                   <Download aria-hidden="true" className="h-4 w-4" />
-                  Resume
+                  View Resume
                 </ButtonLink>
               </div>
 
@@ -71,7 +73,7 @@ export function HeroSection({
             <aside aria-label={`${profile.name} profile card`} className="workspace-id-card mx-auto w-full max-w-xs rounded-2xl p-1">
               <div className="rounded-xl bg-[#181818] p-5 text-center">
                 <Image
-                  alt={`Portrait of ${profile.name}, Full Stack Developer in Pune`}
+                  alt={`Portrait of ${profile.name}, frontend-focused full-stack developer in Pune`}
                   className="mx-auto h-32 w-32 rounded-full border-2 border-[#007acc] object-cover object-center shadow-lg"
                   height={1200}
                   priority
@@ -79,7 +81,7 @@ export function HeroSection({
                   width={900}
                 />
                 <h2 className="mt-4 text-lg font-semibold text-white">{profile.name}</h2>
-                <p className="font-mono text-xs text-cyan-300">Full Stack Developer · Pune, India</p>
+                <p className="font-mono text-xs text-cyan-300">React.js &amp; Next.js · Pune, India</p>
 
                 <div className="mt-4 space-y-2 rounded-lg border border-[#3c3c3c] bg-[#252526] p-3 text-left font-mono text-[11px] text-slate-300">
                   <p><span className="text-violet-300">experience:</span> &quot;{profile.experience}&quot;,</p>

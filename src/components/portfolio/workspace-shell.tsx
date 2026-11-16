@@ -5,6 +5,7 @@ import {
   Code2,
   FileText,
   FolderOpen,
+  Layers3,
   Mail,
   Menu,
   MapPin,
@@ -21,12 +22,13 @@ import type { SocialLink } from "@/types/content";
 const files = [
   { id: "hero", label: "Hero.tsx", icon: Code2, tone: "text-cyan-300" },
   { id: "about", label: "AboutMe.md", icon: FileText, tone: "text-blue-300" },
+  { id: "services", label: "Services.tsx", icon: Layers3, tone: "text-cyan-200" },
   { id: "projects", label: "Projects.tsx", icon: FolderOpen, tone: "text-violet-300" },
   { id: "experience", label: "ProfessionalExperience.json", icon: Braces, tone: "text-amber-300" },
   { id: "contact", label: "Contact.sh", icon: TerminalSquare, tone: "text-emerald-300" },
 ];
 
-const aboutSectionIds = new Set(["about", "skills", "achievements"]);
+const aboutSectionIds = new Set(["about", "skills"]);
 
 function getTabForHash(hash: string) {
   if (aboutSectionIds.has(hash)) return "about";
@@ -53,10 +55,15 @@ export function WorkspaceShell({
   skipTarget?: string;
 }) {
   const [activeFile, setActiveFile] = useState(initialFile);
+  const [hasHydrated, setHasHydrated] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const activeTabRef = useRef<HTMLAnchorElement>(null);
   const menuToggleRef = useRef<HTMLButtonElement>(null);
   const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    setHasHydrated(true);
+  }, []);
 
   useEffect(() => {
     const selectHashTab = () => {
@@ -110,7 +117,7 @@ export function WorkspaceShell({
   }, [menuOpen]);
 
   useEffect(() => {
-    const nonMobileQuery = window.matchMedia("(min-width: 425px)");
+    const nonMobileQuery = window.matchMedia("(min-width: 640px)");
     const closeOnNonMobile = () => {
       if (nonMobileQuery.matches) setMenuOpen(false);
     };
@@ -173,7 +180,7 @@ export function WorkspaceShell({
       <div className="workspace-body">
         <aside aria-label="Quick navigation" className="workspace-activity">
           <nav className="workspace-activity-nav">
-            {files.filter(({ id }) => ["hero", "projects", "experience", "contact"].includes(id)).map(({ id, label, icon: Icon }) => (
+            {files.filter(({ id }) => ["hero", "services", "projects", "experience", "contact"].includes(id)).map(({ id, label, icon: Icon }) => (
               <a
                 key={id}
                 aria-current={activeFile === id ? "location" : undefined}
@@ -265,7 +272,7 @@ export function WorkspaceShell({
             className="workspace-scroll"
             data-active-file={activeFile}
             data-editor-scroll
-            data-home-view={navigationPrefix ? undefined : "true"}
+            data-home-view={navigationPrefix || !hasHydrated ? undefined : "true"}
             id="portfolio-content"
             role="tabpanel"
           >
@@ -392,8 +399,8 @@ function TerminalPanel({
     const destinations: Record<string, string> = {
       hero: "hero",
       about: "about",
+      services: "services",
       skills: "about",
-      achievements: "about",
       experience: "experience",
       exp: "experience",
       projects: "projects",
@@ -417,7 +424,7 @@ function TerminalPanel({
     }
 
     const response = value === "help"
-      ? "Commands: hero, about, skills, experience, projects, achievements, contact, clear"
+      ? "Commands: hero, about, services, skills, experience, projects, contact, clear"
       : `Command not found: ${value}. Type help to see available commands.`;
     const nextLines: TerminalLine[] = [
       { text: `$ ${value}`, tone: "cyan" },

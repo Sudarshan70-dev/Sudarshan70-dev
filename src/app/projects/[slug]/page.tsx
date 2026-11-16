@@ -9,64 +9,42 @@ type ProjectPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-// 1. Instantly return 404 for unknown slugs without invoking serverless compute
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: ProjectPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
   if (!project) {
-    return {
-      title: "Project Not Found",
-      robots: { index: false, follow: false },
-    };
+    return { title: "Project Not Found", robots: { index: false, follow: false } };
   }
 
-  const projectUrl = `${siteUrl}/projects/${project.slug}`;
-  const ogImage =
-    (project as { image?: string }).image || "/hero-photo.jpg";
+  const path = `/projects/${project.slug}`;
+  const title = `${project.title} Case Study`;
+  const image = "/opengraph-image";
 
   return {
-    title: `${project.title} Case Study`,
+    title,
     description: project.summary,
-    keywords: [
-      project.title,
-      ...project.stack,
-      "Case Study",
-      "Sudarshan Gadekar",
-      "Full-Stack Software Engineer",
-    ],
-    alternates: {
-      canonical: projectUrl,
-    },
+    alternates: { canonical: path },
     openGraph: {
       type: "article",
-      title: `${project.title} | Case Study by Sudarshan Gadekar`,
+      title: `${title} | Sudarshan Gadekar`,
       description: project.summary,
-      url: projectUrl,
+      url: `${siteUrl}${path}`,
       siteName: "Sudarshan Gadekar Portfolio",
       locale: "en_IN",
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: `${project.title} - Case Study by Sudarshan Gadekar`,
-        },
-      ],
+      images: [{ url: image, width: 1200, height: 630, alt: `${project.title} case study` }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${project.title} | Case Study by Sudarshan Gadekar`,
+      title: `${title} | Sudarshan Gadekar`,
       description: project.summary,
-      images: [ogImage],
+      images: [image],
     },
   };
 }
@@ -75,45 +53,29 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
-  if (!project) {
-    notFound();
-  }
+  if (!project) notFound();
 
   const projectUrl = `${siteUrl}/projects/${project.slug}`;
-
-  // 2. Upgraded JSON-LD combining SoftwareSourceCode/CreativeWork + BreadcrumbList
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "CreativeWork",
-        "@id": `${projectUrl}/#project`,
+        "@id": `${projectUrl}#project`,
         name: project.title,
-        headline: `${project.title} - Case Study`,
+        headline: titleForProject(project.title),
         description: project.summary,
         url: projectUrl,
-        image: `${siteUrl}/hero-photo.jpg`,
-        author: { "@id": `${siteUrl}/#person` },
-        creator: { "@id": `${siteUrl}/#person` },
-        keywords: project.stack.join(", "),
+        contributor: { "@id": `${siteUrl}/#person` },
+        about: project.context,
         inLanguage: "en-IN",
       },
       {
         "@type": "BreadcrumbList",
-        "@id": `${projectUrl}/#breadcrumb`,
+        "@id": `${projectUrl}#breadcrumb`,
         itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: siteUrl,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: project.title,
-            item: projectUrl,
-          },
+          { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+          { "@type": "ListItem", position: 2, name: project.title, item: projectUrl },
         ],
       },
     ],
@@ -122,12 +84,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <>
       <script
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
         type="application/ld+json"
       />
-      <ProjectCaseStudyPage project={project}/>
+      <ProjectCaseStudyPage project={project} />
     </>
   );
+}
+
+function titleForProject(title: string) {
+  return `${title} - Case Study`;
 }

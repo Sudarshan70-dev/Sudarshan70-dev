@@ -61,17 +61,14 @@ export type ExperienceItem = {
   stack: string[];
 };
 
-export type ProjectVisual = {
-  eyebrow: string;
-  title: string;
-  stats: { label: string; value: string }[];
-  panels: string[];
-};
-
 export type ProjectCaseStudy = {
   slug: string;
   title: string;
   type: string;
+  status: string;
+  context: string;
+  role: string;
+  evidenceNote: string;
   tagline: string;
   summary: string;
   liveUrl?: string;
@@ -84,8 +81,6 @@ export type ProjectCaseStudy = {
   architecture: string[];
   challenges: string[];
   impact: string[];
-  visuals: ProjectVisual;
-  heroScene: SectionSceneConfig;
 };
 
 export type ContactConfig = {
