@@ -122,15 +122,15 @@ export function ContactSection({
   };
 
   return (
-    <section className="section-anchor px-4 py-10 sm:px-6 lg:px-10" data-section id="contact">
-      <div className="mx-auto max-w-7xl">
+    <section className="section-anchor contact-section" data-section id="contact">
+      <div className="section-inner">
         <SectionHeading
           description="For a role, collaboration, or project, share a little context about the product and the help you need."
           eyebrow="Contact"
           title="Ready for frontend, product, and SaaS-focused conversations."
         />
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="contact-layout mt-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           <MotionReveal>
             <div className="section-card h-full rounded-[2rem] p-6 sm:p-8">
               <p className="text-sm leading-7 text-slate-300">{contact.note}</p>

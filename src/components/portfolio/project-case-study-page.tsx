@@ -1,7 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 
 import { Footer } from "@/components/portfolio/footer";
-import { WorkspaceShell } from "@/components/portfolio/workspace-shell";
+import { SiteHeader } from "@/components/portfolio/site-header";
 import { ButtonLink } from "@/components/ui/button-link";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -19,8 +19,10 @@ const caseStudySections = [
 
 export function ProjectCaseStudyPage({ project }: { project: ProjectCaseStudy }) {
   return (
-    <WorkspaceShell initialFile="projects" navigationPrefix="/" skipTarget="#case-study-content" socialLinks={socialLinks}>
-      <main className="px-4 pb-10 pt-8 sm:px-6 lg:px-10" id="case-study-content">
+    <div className="portfolio-app">
+      <div className="portfolio-frame">
+        <SiteHeader resumeHref={profile.resumeHref} />
+        <main className="case-study-main" id="case-study-content">
         <div className="mx-auto max-w-7xl">
           <ButtonLink className="mb-6 px-0 text-sm text-slate-300 hover:bg-transparent" href="/#projects" variant="ghost">
             <ArrowLeft aria-hidden="true" className="h-4 w-4" />
@@ -35,17 +37,17 @@ export function ProjectCaseStudyPage({ project }: { project: ProjectCaseStudy })
 
             <div className="mt-6 grid gap-4 border-t border-white/10 pt-6 md:grid-cols-2">
               <div>
-                <h2 className="font-mono text-xs uppercase tracking-wide text-cyan-200">Context</h2>
+                <h2 className="case-meta-label">Context</h2>
                 <p className="mt-2 text-sm leading-7 text-slate-300">{project.context}</p>
               </div>
               <div>
-                <h2 className="font-mono text-xs uppercase tracking-wide text-cyan-200">My contribution</h2>
+                <h2 className="case-meta-label">My contribution</h2>
                 <p className="mt-2 text-sm leading-7 text-slate-300">{project.role}</p>
               </div>
             </div>
 
             <ul aria-label="Technology stack" className="mt-6 flex flex-wrap gap-2">
-              {project.stack.map((tool) => <li className="rounded border border-[#3c3c3c] bg-[#1e1e1e] px-2.5 py-1.5 font-mono text-[11px] text-slate-200" key={tool}>{tool}</li>)}
+              {project.stack.map((tool) => <li className="tech-pill" key={tool}>{tool}</li>)}
             </ul>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -66,7 +68,7 @@ export function ProjectCaseStudyPage({ project }: { project: ProjectCaseStudy })
               {caseStudySections.map(({ key, title }, index) => (
                 <MotionReveal key={key} delay={index * 0.04}>
                   <article className="section-card h-full rounded-xl p-5">
-                    <p className="font-mono text-xs text-cyan-300">0{index + 1} // {title}</p>
+                    <p className="case-subsection-label">Section {String(index + 1).padStart(2, "0")} · {title}</p>
                     <h2 className="mt-3 text-lg font-semibold text-white">{title}</h2>
                     <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-300">
                       {project[key].map((item) => <li className="flex gap-3" key={item}><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300" /><span>{item}</span></li>)}
@@ -87,8 +89,9 @@ export function ProjectCaseStudyPage({ project }: { project: ProjectCaseStudy })
             </div>
           </section>
         </div>
-      </main>
-      <Footer navigationPrefix="/" resumeHref={profile.resumeHref} socialLinks={socialLinks} />
-    </WorkspaceShell>
+        </main>
+        <Footer navigationPrefix="/" resumeHref={profile.resumeHref} socialLinks={socialLinks} />
+      </div>
+    </div>
   );
 }

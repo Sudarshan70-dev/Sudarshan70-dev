@@ -3,7 +3,7 @@ import { siteUrl } from "@/lib/site-config";
 import "./globals.css";
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a", // Matches dark/HUD theme on mobile browsers
+  themeColor: "#030816",
   width: "device-width",
   initialScale: 1,
 };

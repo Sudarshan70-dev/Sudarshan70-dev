@@ -14,16 +14,13 @@ type ButtonLinkProps = {
 };
 
 const variants = {
-  primary:
-    "border-cyan-300/35 bg-cyan-300/12 text-cyan-50 hover:border-cyan-200/70 hover:bg-cyan-300/18",
-  secondary:
-    "border-slate-700/70 bg-slate-900/60 text-slate-100 hover:border-cyan-300/30 hover:bg-slate-900/90",
-  ghost:
-    "border-transparent bg-transparent text-slate-300 hover:border-slate-700/70 hover:bg-slate-900/60 hover:text-white",
+  primary: "button-link-primary",
+  secondary: "button-link-secondary",
+  ghost: "button-link-ghost",
 };
 
 const sharedClassName =
-  "inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold transition duration-200";
+  "button-link inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold transition duration-200";
 
 export function ButtonLink({
   href,

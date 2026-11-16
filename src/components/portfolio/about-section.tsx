@@ -1,49 +1,81 @@
 "use client";
 
-import { Layers3, Rocket, ShieldCheck, Workflow } from "lucide-react";
+import { Atom, BriefcaseBusiness, Code2, MapPin, Monitor, Rocket, ShieldCheck, Workflow } from "lucide-react";
 
+import { ButtonLink } from "@/components/ui/button-link";
 import { MotionReveal } from "@/components/ui/motion-reveal";
-import { SectionHeading } from "@/components/ui/section-heading";
 import type { Profile } from "@/types/content";
 
-const pillarIcons = [Workflow, Layers3, ShieldCheck, Rocket];
+const pillarIcons = [Workflow, Monitor, ShieldCheck, Rocket];
 
 export function AboutSection({ profile }: { profile: Profile }) {
-  return (
-    <section className="section-anchor px-4 py-10 sm:px-6 lg:px-10" data-section id="about">
-      <div className="mx-auto max-w-7xl">
-        <SectionHeading
-          description="I build responsive product interfaces and operational workflows with React.js, Next.js, TypeScript, and cloud service integrations."
-          eyebrow="About"
-          title="Focused on useful product interfaces."
-        />
+  const experienceYears = profile.experience.match(/\d+\+?/)?.[0] ?? "2+";
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <MotionReveal className="section-card rounded-[2rem] p-6 sm:p-8">
-            <div className="space-y-5 text-base leading-8 text-slate-300">
-              {profile.about.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
+  return (
+    <section className="section-anchor about-section" data-section id="about">
+      <div className="section-inner">
+        <div className="about-main">
+          <MotionReveal className="about-visual-motion">
+            <div aria-hidden="true" className="about-visual">
+              <div className="about-visual-spark about-visual-spark--one">&lt;/&gt;</div>
+              <div className="about-visual-spark about-visual-spark--two"><Atom /></div>
+              <div className="about-laptop">
+                <div className="about-laptop-screen">
+                  <div className="about-screen-toolbar"><i /><i /><i /></div>
+                  <Atom className="about-react-mark" />
+                  <div className="about-code-line about-code-line--one" />
+                  <div className="about-code-line about-code-line--two" />
+                  <div className="about-code-line about-code-line--three" />
+                </div>
+                <div className="about-laptop-base" />
+              </div>
+              <span className="about-orbit about-orbit--one" />
+              <span className="about-orbit about-orbit--two" />
             </div>
           </MotionReveal>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            {profile.valuePillars.map((pillar, index) => {
-              const Icon = pillarIcons[index % pillarIcons.length];
+          <MotionReveal className="about-copy">
+            <p className="section-label">About me</p>
+            <h2 className="about-title">Passionate developer<br />turning ideas into <span>reality</span></h2>
+            <div className="about-bio">
+              {profile.about.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            </div>
+            <ButtonLink href="#experience" variant="primary">Know more about me</ButtonLink>
+          </MotionReveal>
 
-              return (
-                <MotionReveal key={pillar.title} className="h-full" delay={index * 0.05}>
-                  <div className="section-card perspective-card h-full rounded-[1.75rem] p-5">
-                    <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-cyan-300/18 bg-cyan-300/10 text-cyan-100">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="mt-5 text-lg font-semibold text-white">{pillar.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-300">{pillar.description}</p>
-                  </div>
-                </MotionReveal>
-              );
-            })}
-          </div>
+          <aside aria-label="Professional highlights" className="about-facts">
+            <div className="about-fact">
+              <BriefcaseBusiness aria-hidden="true" />
+              <p><strong>{experienceYears} Years</strong><span>Professional experience</span></p>
+            </div>
+            <div className="about-fact">
+              <MapPin aria-hidden="true" />
+              <p><strong>Pune, India</strong><span>Based in Maharashtra</span></p>
+            </div>
+            <div className="about-fact">
+              <Code2 aria-hidden="true" />
+              <p><strong>Full-Stack Developer</strong><span>Frontend-focused product work</span></p>
+            </div>
+            <div className="about-fact">
+              <Atom aria-hidden="true" />
+              <p><strong>React.js</strong><span>Core frontend specialty</span></p>
+            </div>
+          </aside>
+        </div>
+
+        <div className="about-pillars">
+          {profile.valuePillars.map((pillar, index) => {
+            const Icon = pillarIcons[index % pillarIcons.length];
+            return (
+              <MotionReveal key={pillar.title} delay={index * 0.04}>
+                <article className="about-pillar">
+                  <Icon aria-hidden="true" />
+                  <h3>{pillar.title}</h3>
+                  <p>{pillar.description}</p>
+                </article>
+              </MotionReveal>
+            );
+          })}
         </div>
       </div>
     </section>

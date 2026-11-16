@@ -16,7 +16,7 @@ export function SectionHeading({
   const alignment = align === "center" ? "mx-auto text-center" : "";
 
   return (
-    <div className={alignment}>
+    <div className={`section-heading ${alignment}`}>
       <div className={`section-label ${align === "center" ? "mx-auto" : ""}`}>
         <Sparkles className="h-3.5 w-3.5 text-cyan-300" />
         {eyebrow}
