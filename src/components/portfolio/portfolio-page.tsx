@@ -32,7 +32,7 @@ export function PortfolioPage() {
           <AchievementsSection projectCount={projects.length} resumeHref={profile.resumeHref} skillAreaCount={skillGroups.length} />
           <ContactSection contact={contactConfig} socialLinks={socialLinks} />
         </main>
-        <Footer resumeHref={profile.resumeHref} socialLinks={socialLinks} />
+        <Footer contact={contactConfig} socialLinks={socialLinks} />
       </div>
     </div>
   );
