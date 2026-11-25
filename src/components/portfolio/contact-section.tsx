@@ -6,7 +6,6 @@ import {
   FolderGit2,
   Mail,
   MapPin,
-  MessageCircle,
   PhoneCall,
   Send,
 } from "lucide-react";
@@ -14,7 +13,6 @@ import { useState, useTransition } from "react";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import OutgoingMailIcon from "@mui/icons-material/OutgoingMail";
 
-import { ButtonLink } from "@/components/ui/button-link";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buildMailtoLink } from "@/lib/utils";
@@ -38,6 +36,26 @@ const initialForm = {
   message: "",
   website: "", // Honeypot field for basic spam protection
 };
+
+const formatWhatsAppEnquiry = ({
+  enquiryType,
+  name,
+  email,
+  message,
+}: {
+  enquiryType: string;
+  name: string;
+  email: string;
+  message: string;
+}) =>
+  [
+    "*New Portfolio Enquiry*",
+    `*Topic:* ${enquiryType}`,
+    `*Name:* ${name}`,
+    `*Email:* ${email}`,
+    `*Message:*`,
+    message,
+  ].join("\n");
 
 export function ContactSection({
   contact,
@@ -88,93 +106,72 @@ export function ContactSection({
     },
   ] as const;
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
 
-    // Silently ignore bot submissions that fill the hidden honeypot field
-    if (form.website.trim()) {
-      setForm(initialForm);
+  // Silently ignore bot submissions that fill the hidden honeypot field
+  if (form.website.trim()) {
+    setForm(initialForm);
+    setSubmissionState({
+      tone: "success",
+      message: "Your message is on its way. Thanks for reaching out.",
+    });
+    return;
+  }
+
+  startTransition(async () => {
+    const trimmedName = form.name.trim();
+    const trimmedEmail = form.email.trim();
+    const trimmedMessage = form.message.trim();
+    const enquiryType = form.enquiryType;
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
       setSubmissionState({
-        tone: "success",
-        message: "Your message is on its way. Thanks for reaching out.",
+        tone: "error",
+        message: "Please fill in your name, email, and message so I know how to respond.",
       });
       return;
     }
 
-    startTransition(async () => {
-      const trimmedName = form.name.trim();
-      const trimmedEmail = form.email.trim();
-      const trimmedMessage = form.message.trim();
-      const enquiryType = form.enquiryType;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (!trimmedName || !trimmedEmail || !trimmedMessage) {
-        setSubmissionState({
-          tone: "error",
-          message:
-            "Please fill in your name, email, and message so I know how to respond.",
-        });
-        return;
-      }
+    if (!emailPattern.test(trimmedEmail)) {
+      setSubmissionState({
+        tone: "error",
+        message: "Please add a valid email address before sending the message.",
+      });
+      return;
+    }
 
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      if (!emailPattern.test(trimmedEmail)) {
-        setSubmissionState({
-          tone: "error",
-          message:
-            "Please add a valid email address before sending the message.",
-        });
-        return;
-      }
-
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-
-      if (!serviceId || !templateId || !publicKey) {
-        window.location.href = buildMailtoLink(
-          contact.email,
-          `Portfolio enquiry from ${trimmedName}`,
-          `${trimmedMessage}\n\nTopic: ${enquiryType}\nFrom: ${trimmedName}\nReply to: ${trimmedEmail}`,
-        );
-
-        setSubmissionState({
-          tone: "success",
-          message:
-            "EmailJS is not configured yet, so your default email app has been opened instead.",
-        });
-        return;
-      }
-
-      try {
-        await emailjs.send(
-          serviceId,
-          templateId,
-          {
-            from_name: trimmedName,
-            from_email: trimmedEmail,
-            reply_to: trimmedEmail,
-            enquiry_type: enquiryType,
-            message: trimmedMessage,
-          },
-          publicKey,
-        );
-
-        setForm(initialForm);
-        setSubmissionState({
-          tone: "success",
-          message: "Your message is on its way. Thanks for reaching out.",
-        });
-      } catch (error) {
-        console.error(error);
-        setSubmissionState({
-          tone: "error",
-          message:
-            "Something blocked the send flow. Please use WhatsApp or the direct email link below and I will get back to you.",
-        });
-      }
+    const whatsappNumber = contact.phone.replace(/\D/g, "");
+    const whatsappBody = formatWhatsAppEnquiry({
+      enquiryType,
+      name: trimmedName,
+      email: trimmedEmail,
+      message: trimmedMessage,
     });
-  };
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappBody)}`;
+
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    // Open WhatsApp with all details pre-filled for your number
+    if (whatsappNumber) {
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    }
+
+    if (!serviceId || !templateId || !publicKey) {
+      setForm(initialForm);
+      setSubmissionState({
+        tone: "success",
+        message:
+          "Opened WhatsApp with all your details pre-filled. You can also use Email Directly below.",
+      });
+      return;
+    }
+  });
+};
 
   return (
     <section
