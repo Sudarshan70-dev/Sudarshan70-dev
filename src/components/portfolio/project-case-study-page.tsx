@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/portfolio/site-header";
 import { ButtonLink } from "@/components/ui/button-link";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { profile, socialLinks } from "@/content/site";
+import { profile, contactConfig, socialLinks } from "@/content/site";
 import type { ProjectCaseStudy } from "@/types/content";
 
 const caseStudySections = [
@@ -90,7 +90,7 @@ export function ProjectCaseStudyPage({ project }: { project: ProjectCaseStudy })
           </section>
         </div>
         </main>
-        <Footer navigationPrefix="/" resumeHref={profile.resumeHref} socialLinks={socialLinks} />
+        <Footer contact={contactConfig} socialLinks={socialLinks} />
       </div>
     </div>
   );

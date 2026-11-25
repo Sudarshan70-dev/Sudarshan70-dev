@@ -116,7 +116,7 @@ export function Footer({
             </h2>
             <ul className="mt-4 space-y-2.5 text-sm">
               {SERVICE_AREA_LINKS.map((item) => (
-                <li key={item.href}>
+                <li key={item.label}>
                   <Link
                     className="text-slate-400 transition hover:text-cyan-200"
                     href={item.href}
